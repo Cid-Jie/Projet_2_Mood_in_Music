@@ -1,6 +1,6 @@
 # Projet_2_Mood_in_Music
 
-Here is my 2nd project done after 2 months at wild code school with 2 of my classmates.
+Here is my 2nd project done after 2 months at Wild Code School with 2 of my classmates.
 
 We used the MVC model under agile method with 4 one-week sprints.
 
