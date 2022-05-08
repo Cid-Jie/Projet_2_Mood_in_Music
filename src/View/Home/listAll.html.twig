@@ -1,0 +1,28 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+	{% include 'Music/_button_genre.html.twig' %}
+	{% if hasVoted == true %}
+		<p class="text-center mb-4">Votre vote a été pris compte pour le classement du mois prochain !</p>
+	{% endif %}
+	<main class="container">
+		<div class="row justify-content-around">
+			{% for musical in musics %}
+				<div class="d-inline-flex p-2 bd-highlight card-{{ musical.genre_name }} mb-5" id="music-card-{{ musical.genre_name }}">
+					<img class="align-self-center rounded-circle" src="{{ musical.music_image}}" alt="" width="80" height="80"/>
+					<div class="m-2 align-self-center">
+						<h5 class="card-title">{{ musical.title }}</h5>
+						<h6 class="card-subtitle mb-2 text-muted"> by {{ musical.author}}</h6>
+						<div class="d-flex flex-row justify-content-between"  id="music-footcard" >
+						<a href="music/player?id={{ musical.id }}" class="card-link">🎵 Ecouter</a>
+						{% if hasVoted == false and "now"|date('Y-m-d H:i:s') < dates.end_date|date('Y-m-d H:i:s') %}
+							<a href="music/addvote?id={{ musical.id }}">
+							<img src="../../../assets/images/thumb.png" id="thumb"/>
+							</a>
+						{% endif %}
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</main>
+{% endblock %}

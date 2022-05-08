@@ -1,0 +1,48 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+	<main class="container mb-5">
+		<h1 class="text-center mt-3 mb-3">Bonjour
+			{{user.pseudo}}
+			!</h1>
+
+		<button type="button" class="btn btn-light float-end m-3" id="button_add" name="submit">
+			<a href="admin/vote">Gestion des votes</a>
+		</button>
+		<button type="button" class="btn btn-light float-end m-3" id="button_add">
+			<a href="admin/add">Ajouter une musique</a>
+		</button>
+		<p>Liste des musiques</p>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Titre</th>
+					<th>Auteur</th>
+					<th>Genre</th>
+					<th>Image</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for music in musics %}
+					<tr>
+						<td>{{music.title}}</td>
+						<td>{{music.author}}</td>
+						<td>{{music.genre_name}}</td>
+						<td><img width="70px" class="mt-2" src="{{music.music_image}}"></td>
+						<td>
+							<button type="button" class="btn btn-light mt-2">
+								<a href="admin/edit?id={{music.id}}">Modifier</a>
+							</button>
+						</td>
+						<td>
+							<button type="button" class="btn btn-danger mt-2">
+								<a href="admin/delete?id={{music.id}}">Supprimer</a>
+							</button>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</main>
+{% endblock %}

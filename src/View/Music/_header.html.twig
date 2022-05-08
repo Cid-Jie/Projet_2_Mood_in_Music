@@ -1,0 +1,32 @@
+{# Music/_header.html.twig #}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<div class="container-fluid">
+		<a class="navbar-brand">MOOD IN MUSIC</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+			<ul class="d-f-auto-sm navbar-nav me-auto mb-2 mb-lg-0">
+				<li class="nav-item">
+					<a class="nav-link" href="/">Musiques</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/music/vote?id=7">Classement du mois</a>
+				</li>
+
+				{% if user %}
+					<li class="nav-item">
+						<a class="nav-link" href="/admin/login">BDD</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link align-self-end" href="/admin/logout">Se déconnecter</a>
+					</li>
+				{% else %}
+					<li class="nav-item">
+						<a class="nav-link" href="/admin/login">ADMIN</a>
+					</li>
+				{% endif %}				
+			</ul>
+		</div>
+	</div>
+</nav>

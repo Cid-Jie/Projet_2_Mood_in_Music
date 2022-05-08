@@ -1,0 +1,36 @@
+{# TODO : manage errors display #}
+<main class="container">
+<form method="post" class="form">
+		<p>
+            <input type="hidden" value="{{ music.id }}" name="id">
+        </p>
+        <p>
+            <label for="title" class="form-label m-1">Titre :</label>
+            <input type="text" name="title" id="title" value="{{music.title}}" class="form-control align-item-center" required>
+        </p>
+        <p>
+            <label for="author" class="form-label m-1">Auteur :</label>
+            <input type="text" name="author" id="author" value="{{music.author}}" class="form-control" required>
+        </p>
+        <p>
+            <label for="source" class="form-label m-1">Source :</label>
+            <input type="text" name="source" id="source" value="{{music.source}}" class="form-control" required>
+        </p>
+		<p>
+            <label for="musical_genre_id" class="form-label m-1">Genre :</label>
+            <select name="musical_genre_id" id="musical_genre_id" value="{{music.musical_genre_id}}" class="form-control" required>
+                <option value="{{music.musical_genre_id}}"> Genre sélectionné : {{music.genre_name}} </option>
+                {% for genre in genres %}
+                    <option value="{{genre.id}}"> {{genre.genre_name}}</option> 
+                {% endfor %}
+            </select>
+        </p>
+        <p>
+            <label for="image" class="form-label m-2">Image : <img width="60px" src="{{music.music_image}}"></label>
+            <input type="text" name="music_image" id="music_image" value="{{music.music_image}}" class="form-control">
+        </p>
+        <p class="text-center mb-5">
+            <button type="submit" class="btn btn-light mb-auto mt-2 py-1 px-4">Valider</button>
+        </p>
+    </form>
+</main>

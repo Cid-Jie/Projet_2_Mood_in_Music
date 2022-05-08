@@ -1,0 +1,246 @@
+@font-face {
+    font-family: 'LEMONMILK';
+    src: url("../police/LEMONMILK-Medium.otf");
+}
+
+:root {
+    --background-dark: #333232;
+    --color-light: white;
+    --color-dark: rgb(12, 12, 12);
+
+    /* Variable bootstrap button*/
+    --bs-pop: #ffc93f;
+    --bs-buttonPop: rgb(var(--bs-primary));
+
+    --bs-cinematic: #a5cf2e;
+    --bs-buttonCinematic: rgb(var(--bs-secondary));
+
+    --bs-electro: #c6873d;
+    --bs-buttonElectro: rgb(var(--bs-success));
+
+    --bs-world: #33d3c0;
+    --bs-buttonWorld: rgb(var(--bs-dark));
+
+    --bs-chillout: #7142af;
+    --bs-buttonChillout: rgb(var(--bs-warning));
+
+    --bs-ambient: #e3355f;
+    --bs-buttonAmbient: rgb(var(--bs-info));
+}
+
+/*Adapt color for button and cards*/
+.btn-primary {
+    background-color: var(--bs-pop);
+    color: var(--color-dark);
+    border: 1px solid var(--color-dark);
+}
+
+.card-pop {
+    background-color: var(--bs-pop);
+}
+
+.btn-secondary {
+    background-color: var(--bs-cinematic);
+    color: var(--color-dark);
+    border: 1px solid var(--color-dark);
+}
+
+.card-cinematic {
+    background-color: var(--bs-cinematic);
+}
+
+.btn-success {
+    background-color: var(--bs-electro);
+    color: var(--color-dark);
+    border: 1px solid var(--color-dark);
+}
+
+.card-electro {
+    background-color: var(--bs-electro);
+}
+
+.btn-dark {
+    background-color: var(--bs-world);
+    color: var(--color-dark);
+    border: 1px solid var(--color-dark);
+}
+
+.card-world {
+    background-color: var(--bs-world);
+}
+
+.btn-warning {
+    background-color: var(--bs-chillout);
+    color: var(--color-dark);
+    border: 1px solid var(--color-dark);
+}
+
+.card-chillout {
+    background-color: var(--bs-chillout);
+}
+
+.btn-info {
+    background-color: var(--bs-ambient);
+    color: var(--color-dark);
+    border: 1px solid var(--color-dark);
+}
+
+.card-ambient {
+    background-color: var(--bs-ambient);
+}
+
+.btn:hover {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+}
+
+/* CSS for general page */
+body {
+    background-color: var(--color-dark);
+    box-sizing: border-box;
+    margin-bottom: 2rem;
+}
+
+.navbar-collapse {
+    flex-grow: unset;
+}
+
+h1 {
+    color: var(--color-light);
+    font-family: 'LEMONMILK', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-dark);
+}
+
+.btn_list {
+    height: 8rem;
+    width: 8rem;
+    font-family: 'LEMONMILK', sans-serif;
+}
+
+h5 {
+    font-family: 'LEMONMILK', sans-serif;
+    font-size: small;
+    color: var(--color-dark);
+}
+
+.navbar {
+    font-family: 'LEMONMILK', sans-serif;
+}
+
+.btn_list:hover, .btn_list:focus {
+    background-color: var(--background-dark);
+    color: white;
+}
+
+.dropdown-menu button {
+    height: 100%;
+    font-size: 1.5rem;
+}
+
+.dropdown ul {
+    width: 100%;
+}
+
+.dropdown button {
+    width: 100%;
+    height: 3rem;
+}
+
+.btn:hover,
+.dropdown-item:hover {
+    background-color: var(--color-dark);
+}
+
+p {
+    color: var(--color-light);
+}
+
+label {
+    width: 162px;
+}
+
+.table {
+    color: var(--color-light);
+}
+
+body,
+html {
+    height: max-content;
+}
+
+.sticky-footer {
+    background-color: var(--background-dark);
+    color: var(--color-light);
+    height: 35px;
+    margin-top: auto;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+li {
+    text-align: center;
+    height: 3rem;
+    margin: 0;
+}
+
+.soundcloud {
+    width: 80%;
+}
+
+#img_player {
+    width: 15rem;
+}
+
+#card_player {
+    width: 80%;
+}
+
+#form-label-password {
+    width: max-content;
+}
+
+.list-group{
+    animation-delay: 200ms;
+    animation-name: slide-in-left;
+}
+
+.figure-img{
+    width: 6rem;
+}
+
+#card-music-genre{
+    width: 20rem;
+}
+
+#dropdownMenuButton1{
+    background-color: var(--background-dark);
+    color: var(--color-light);
+}
+#music-card-pop, #music-card-cinematic, #music-card-electro, #music-card-world, #music-card-ambient, #music-card-chillout {
+    width: 20rem;
+}
+
+#thumb {
+    width: 1.5rem;
+}
+
+#music-footcard {
+    width: 200px;
+}
+
+#all {
+    background-color: rgb(185, 202, 209);
+}
+
+.all-desktop {
+    height: 3rem;
+    width: 10rem;
+}
+
+.video_fire{
+    width: 100%;
+}

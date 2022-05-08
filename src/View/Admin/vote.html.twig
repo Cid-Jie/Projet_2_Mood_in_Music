@@ -1,0 +1,40 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+	<main class="container mb-5">
+		<h1 class="text-center mt-3 mb-5">Vote en cours</h1>
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="card mb-5 mt-5">
+					<div class="card-body">
+						<h5 class="card-title">Date de lancement du vote :</h5>
+						<h4 class="card-text">{{ dates.start_date | date("d/m/Y - H:i:s") }}</h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="card card mb-5 mt-5">
+					<div class="card-body">
+						<h5 class="card-title">Date de clôture du vote :</h5>
+						<h4 class="card-text">{{ dates.end_date | date("d/m/Y - H:i:s")}}</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="mb-5 mt-5">
+			<h3 class="text-white mb-5">Démarrer un nouveau vote :</h4>
+			{% if currentDate < dates.end_date %}
+
+				<h4 class="text-center text-white">Un peu de patience ! Le précédent vote est encore en cours.</h4>
+
+			{% elseif currentDate == dates.end_date or currentDate > dates.end_date  %}
+
+				<button type="button" class="btn btn-light float-end m-3" id="button_add" name="submit">
+					<a href="/admin/vote/new">Démarrer un nouveau vote</a>
+				</button>
+
+			{% endif %}
+		</div>
+
+	</main>
+{% endblock %}

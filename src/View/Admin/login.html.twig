@@ -1,0 +1,24 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+<main class="container">
+    <h1 class="text-center mt-3 mb-3">Identifiez-vous</h1>
+
+    <form method="post" class="container bg-light">
+
+        <input type="hidden" name="action" value="users/login">
+    
+        <h3><label for="loginName" class="form-label">Pseudo</label></h3>
+        <input id="loginName" type="text" name="userName" class="form-control mb-4">
+    
+        <h3><label for="password" class="form-label" id="form-label-password">Mot de passe : </label></h3>
+        <input id="password" type="password" name="password" class="form-control mb-4">
+    
+        <input type="submit" value="Login" class="btn btn-primary mb-3">
+    
+        {% if errorMessage is defined %}
+            <p>{{ errorMessage }}</p>
+        {% endif %}
+    </form>
+</main>
+{% endblock %}

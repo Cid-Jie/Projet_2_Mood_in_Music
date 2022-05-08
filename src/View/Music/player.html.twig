@@ -1,0 +1,21 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+
+	<body>
+	<div class="rounded mx-auto d-flex flex-column align-items-center mt-5 mb-5">
+		<div class = "card-{{ player.genre_name }} rounded d-flex flex-column align-items-center" id="card_player">
+			<img src="{{player.music_image}}" class="m-3 rounded-circle" alt="..." id="img_player"> 
+			<div class="text-center">
+				<h5 class="fs-1">{{ player.title }}</h5>
+				<br>
+				<h6 class="fs-2 fw-light mb-3">by {{ player.author}}</h6 >
+			</div>
+		</div>
+		<div class="soundcloud">
+			<iframe width="100%" height="200" scrolling="no" frameborder="no" allow="autoplay" src={{player.source}}></iframe>
+			<div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"></div>
+		</div>			
+	</div>
+	</body>
+
+{% endblock %}
