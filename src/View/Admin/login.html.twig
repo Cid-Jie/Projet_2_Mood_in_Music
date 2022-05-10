@@ -17,7 +17,7 @@
         <input type="submit" value="Login" class="btn btn-primary mb-3">
     
         {% if errorMessage is defined %}
-            <p>{{ errorMessage }}</p>
+            <p id="error_message">{{ errorMessage }}</p>
         {% endif %}
     </form>
 </main>

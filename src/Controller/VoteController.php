@@ -13,8 +13,12 @@ class VoteController extends AbstractController
     /**
      * Displays home page
      */
-    public function index(): string
+    public function index(): ?string
     {
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /");
+            return null;
+        }
         $voteManager = new VoteManager();
         $dates = $voteManager->selectAllDates();
         $currentDate = new DateTime('now');
@@ -28,10 +32,14 @@ class VoteController extends AbstractController
      */
     public function launchVote()
     {
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /");
+            return null;
+        }
         //getting the time of the click
         $startDate = new DateTime('now');
         //calculation of the end_date
-        $voteInterval = new DateInterval('PT5M');
+        $voteInterval = new DateInterval('P7D');
         $endDate = $startDate->add($voteInterval);
         //changing dates into strings
         $startDate = new DateTime('now');
@@ -47,12 +55,12 @@ class VoteController extends AbstractController
         header("Location: /admin/vote");
     }
 
-    public function showVote(int $genreId)
+    public function showVote(int $genreId = null)
     {
         $voteManager = new VoteManager();
         $votes = $voteManager->selectVoteById($genreId);
         $allSelected = false;
-        if ($genreId === 7) {
+        if ($genreId == null) {
             $allSelected = true;
         }
 
@@ -64,7 +72,7 @@ class VoteController extends AbstractController
         $voteManager = new VoteManager();
         $voteMusic = $voteManager->selectOneById($id);
         $voteManager->incrementVote($voteMusic);
-        setcookie('hasVoted', 'true', (time() + 5), '/');
+        setcookie('hasVoted', 'true', (time() + 300), '/');
         header("Location: /");
         return null;
     }

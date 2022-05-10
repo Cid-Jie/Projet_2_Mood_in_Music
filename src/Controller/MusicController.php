@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Model\MusicManager;
 use App\Model\VoteManager;
+use App\Service\MusicService;
 use DateTime;
 
 class MusicController extends AbstractController
@@ -17,8 +18,6 @@ class MusicController extends AbstractController
         $musics = $musicManager->selectAllList();
         $voteManager = new VoteManager();
         $dates = $voteManager->selectAllDates();
-        $currentDate = new DateTime('now');
-        //$currentDate->format('Y-m-d H:i:s');
         if (isset($_COOKIE['hasVoted'])) {
             $hasVoted = $_COOKIE['hasVoted'];
         } else {
@@ -28,21 +27,28 @@ class MusicController extends AbstractController
             'Home/listAll.html.twig',
             ['musics' => $musics,
              'hasVoted' => $hasVoted,
-             'currentDate' => $currentDate,
              'dates' => $dates]
         );
     }
 
-    public function index(): string
+    public function index(): ?string
     {
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /");
+            return null;
+        }
         $musicManager = new MusicManager();
         $musics = $musicManager->selectAllList();
 
         return $this->twig->render('Admin/index.html.twig', ['musics' => $musics]);
     }
 
-    public function show(int $id): string
+    public function show(int $id): ?string
     {
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /");
+            return null;
+        }
         $musicManager = new MusicManager();
         $music = $musicManager->selectOneById($id);
 
@@ -51,54 +57,78 @@ class MusicController extends AbstractController
 
     public function edit(int $id): ?string
     {
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /");
+            return null;
+        }
         $musicManager = new MusicManager();
         $genres = $musicManager->selectAllGenre();
 
         $musicManager = new MusicManager();
         $music = $musicManager->selectOneById($id);
 
+        $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // clean $_POST data
             $music = array_map('trim', $_POST);
 
+            $musicService = new MusicService();
+            $errors = $musicService->checkFields($music);
+
             // if validation is ok, update and redirection
-            $musicManager->update($music);
+            if (empty($errors)) {
+                $musicManager->update($music);
 
-            header('Location: /admin/show?id=' . $id);
-
-            return null;
+                header('Location: /admin/show?id=' . $id);
+                return null;
+            }
         }
 
         $musicManager = new MusicManager();
         $music = $musicManager->selectOneById($id);
         return $this->twig->render('Admin/edit.html.twig', [
             'music' => $music,
-            'genres' => $genres
+            'genres' => $genres,
+            'errors' => $errors
         ]);
     }
 
     public function add(): ?string
     {
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /");
+            return null;
+        }
         $musicManager = new MusicManager();
         $genres = $musicManager->selectAllGenre();
 
+        $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // clean $_POST data
             $music = array_map('trim', $_POST);
 
-            // if validation is ok, insert and redirection
-            $musicManager = new MusicManager();
-            $id = $musicManager->insert($music);
+            $musicService = new MusicService();
+            $errors = $musicService->checkFields($music);
 
-            header('Location:/admin/show?id=' . $id);
-            return null;
+            // if validation is ok, insert and redirection
+            if (empty($errors)) {
+                $musicManager = new MusicManager();
+                $id = $musicManager->insert($music);
+
+                header('Location:/admin/show?id=' . $id);
+                return null;
+            }
         }
 
-        return $this->twig->render('Admin/add.html.twig', ['genres' => $genres]);
+        return $this->twig->render('Admin/add.html.twig', ['genres' => $genres, 'errors' => $errors]);
     }
 
     public function delete()
     {
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /");
+            return null;
+        }
         if ($_SERVER['REQUEST_METHOD'] === 'GET' && is_numeric($_GET['id'])) {
             $id = trim($_GET['id']);
             $musicManager = new MusicManager();

@@ -2,6 +2,15 @@
 
 {% block content %}    
     <h1 class="text-center mt-3 mb-3">Mettre à jour : {{ music.title }}</h1>
-     {% include 'Admin/_form.html.twig' %}
+    {% if errors is not empty %}
+		<div class="errors_messages">
+			<ul>
+				{% for error in errors %}
+					<li>{{ error }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	{% endif %}
+    {% include 'Admin/_form.html.twig' %}
 {% endblock %}
 

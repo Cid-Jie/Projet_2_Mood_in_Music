@@ -37,7 +37,8 @@
 						</td>
 						<td>
 							<button type="button" class="btn btn-danger mt-2">
-								<a href="admin/delete?id={{music.id}}">Supprimer</a>
+								<a href="admin/delete?id={{music.id}}"
+								onclick="return confirm('Voulez-vous vraiment supprimer cette musique ?')">Supprimer</a>
 							</button>
 						</td>
 					</tr>
