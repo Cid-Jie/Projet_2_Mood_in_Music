@@ -1,4 +1,4 @@
-# Projet_2_Mood_in_Music
+# Projet Mood in Music
 
 Here is my 2nd project done after 2 months at Wild Code School with 2 of my classmates.
 
